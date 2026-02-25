@@ -69,8 +69,6 @@ public class CaptchaGenerator {
             at.scale(1.0, scaleY);
 
             // небольшое дополнительное сжатие/растяжение по горизонтали
-            double scaleX = 1.0 + 0.08 * Math.cos(2 * Math.PI * 3.2 * t);
-            at.scale(scaleX, 1.0);
 
             // лёгкий дополнительный сдвиг по y от волны
             at.translate(0, 4 * wave);
