@@ -20,13 +20,15 @@ public class CaptchaGenerator {
             return;
         }
 
-
+        //обрабатываем аргументы
         int width = Integer.parseInt(args[0]);
         int height = Integer.parseInt(args[1]);
         String text = args[2];
         String filename = args[3];
+
         int length = text.length();
         int tallness = width / length;
+
         Color[] rainbow = new Color[]{
                 Color.RED,
                 Color.ORANGE,
@@ -53,27 +55,14 @@ public class CaptchaGenerator {
         int x = 5; // Начальная позиция
         for (int i = 0; i < text.length(); i++) {
             AffineTransform at = new AffineTransform();
-            double t = (double) x / width;                        // 0.0 → 1.0 по ширине
-            double wave = Math.sin(2 * Math.PI * 2.5 * t + 1.2);  // 2.5 волны на ширину
 
             // Эффект 1: Поворот (rotate)
             double rotate = random.nextDouble() * 8 - 4; // От -4 до 4 градусов
             at.rotate(Math.toRadians(rotate));
 
             // Эффект 2: Сдвиг (shear)
-            double shear = random.nextDouble() * 0.2 - 0.1; // Легкий сдвиг
+            double shear = random.nextDouble() * 0.2 - 0.1; // Легкое искажение
             at.shear(shear, 0);
-
-            // небольшое изменение масштаба по вертикали
-            double scaleY = 1.0 + 0.12 * wave;
-            at.scale(1.0, scaleY);
-
-            // небольшое дополнительное сжатие/растяжение по горизонтали
-            double scaleX = 1.0 + 0.08 * Math.cos(2 * Math.PI * 3.2 * t);
-            at.scale(scaleX, 1.0);
-
-            // лёгкий дополнительный сдвиг по y от волны
-            at.translate(0, 4 * wave);
 
             // Применяем трансформации
             g2d.setTransform(at);
