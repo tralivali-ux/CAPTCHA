@@ -95,7 +95,7 @@ public class CaptchaGenerator {
         }
 
         // Эффект 4: Наложение шума (случайные точки)
-        for (int i = 0; i < width * height / 50; i++) { // Примерно 2% пикселей
+        for (int i = 0; i < width * height / 25; i++) { // Примерно 4% пикселей
             int px = random.nextInt(width);
             int py = random.nextInt(height);
             image.setRGB(px, py, new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)).getRGB());
